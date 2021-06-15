@@ -1,19 +1,17 @@
 /** handle response errors */
-exports.responseError = (res, res_code, res_des, error, code) => {
+exports.responseError = (res, message, error, code) => {
   res.status(code).json({
     success: false,
-    response_code: `${res_code}`,
-    response_description: `${res_des}`,
+    message: `${message}`,
     error: error,
   })
 }
 
 /** handle successful response */
-exports.responseSuccess = (res, res_code, res_des, data, code) => {
+exports.responseSuccess = (res, message, data, code) => {
   res.status(code).json({
     success: true,
-    response_code: `${res_code}`,
-    response_description: `${res_des}`,
+    message: `${message}`,
     data,
   })
 }

@@ -1,27 +1,48 @@
-const { sequelize, db } = require('../models')
+const { sequelize, db } = require('../models');
 
-exports.getAllActors = () => {
+exports.getAllActorss = () => {
 	return await db.Events.findAll({
-    attributes: ['actor', [sequelize.fn('count', sequelize.col('actor'))], ],
-    group: ['Events.actor'],
-    raw: true,
-    order: sequelize.literal('created_at DESC'),
-    order: sequelize.literal('actor.login DESC'),
-  });
+		attributes: ['actor', [sequelize.fn('count', sequelize.col('actor'))]],
+		group: ['Events.actor'],
+		raw: true,
+		order: sequelize.literal('created_at DESC'),
+		order: sequelize.literal('actor.login DESC'),
+	});
 };
 
-exports.updateActor = (data, condition) => {
-  return await db.Events.update(data, {
-    where: condition,
-  });
+exports.getActor = (actorID) => {
+	return await db.Events.findAll({
+		where: { actor: { id: actorID } },
+		attributes: ['actor', [sequelize.fn('count', sequelize.col('actor'))]],
+		group: ['Events.actor'],
+		raw: true,
+	});
 };
 
-exports.getStreak = () => { // still not clarified
-  return await db.Events.findAll({
-    attributes: ['actor', [sequelize.fn('count', sequelize.col('actor'))], ],
-    group: ['Events.actor'],
-    raw: true,
-    order: sequelize.literal('created_at DESC'),
-    order: sequelize.literal('actor.login DESC'),
-  });
+exports.updateActorr = (actorID, url) => {
+	return await db.Events.update(
+		{
+			actor: {
+				avatar_url: url,
+			},
+		},
+		{
+			where: {
+				actor: {
+					id: actorID,
+				},
+			},
+		}
+	);
+};
+
+exports.getStreakk = () => {
+	// still not clarified
+	return await db.Events.findAll({
+		attributes: ['actor', [sequelize.fn('count', sequelize.col('actor'))]],
+		group: ['Events.actor'],
+		raw: true,
+		order: sequelize.literal('created_at DESC'),
+		order: sequelize.literal('actor.login DESC'),
+	});
 };
