@@ -24,7 +24,6 @@ var addEvent = async (req, res) => {
 };
 
 var getByActor = async (req, res) => {
-	// /events/actors/{actorID}
 	try {
 		const events = await getByActorr(req.params.actorID);
 		if (!events || events.length == 0) return responseError(res, 'No Event Found', null, 404);
@@ -36,7 +35,6 @@ var getByActor = async (req, res) => {
 };
 
 var eraseEvents = async (req, res) => {
-	// /erase
 	try {
 		const erased = await eraseEventss();
 		if (erased) return responseSuccess(res, 'Successful', erased, 200);

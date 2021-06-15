@@ -2,7 +2,6 @@ const { responseError, responseSuccess } = require('../services/common/responses
 const { getAllActorss, getActor, updateActorr, getStreakk } = require('../services/actors.service');
 
 var getAllActors = async (req, res) => {
-	// /actors
 	try {
 		const actors = await getAllActorss();
 		return responseSuccess(res, 'Successful', actors, 200);
@@ -12,7 +11,6 @@ var getAllActors = async (req, res) => {
 };
 
 var updateActor = async (req, res) => {
-	// PUT /actors
 	try {
 		const actor = await getActor(req.body.id);
 		if (!actor || actor.length == 0) return responseError(res, 'Actor Not Found', null, 404);
