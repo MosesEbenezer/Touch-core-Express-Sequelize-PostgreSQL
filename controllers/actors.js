@@ -16,7 +16,7 @@ var updateActor = async (req, res) => {
 		if (!actor || actor.length == 0) return responseError(res, 'Actor Not Found', null, 404);
 
 		const updated_actor = await updateActorr(req.body.id, req.body.avatar_url);
-		if (updated_actor) return responseSuccess(res, 'Successful', actors, 200);
+		if (updated_actor) return responseSuccess(res, 'Successful', updated_actor, 200);
 	} catch (error) {
 		return responseError(res, 'An Error Occured', error.toString(), 500);
 	}

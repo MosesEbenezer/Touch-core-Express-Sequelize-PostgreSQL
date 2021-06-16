@@ -16,7 +16,6 @@ var addEvent = async (req, res) => {
 		if (existing_event) return responseError(res, 'Duplicate Event', null, 400);
 
 		const event = await addEventt(req.body);
-
 		if (event) return responseSuccess(res, 'Successful', event, 201);
 	} catch (error) {
 		return responseError(res, 'An Error Occured', error.toString(), 500);
