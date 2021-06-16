@@ -1,6 +1,6 @@
 const { sequelize, db } = require('../models');
 
-exports.getAllActorss = () => {
+exports.getAllActorss = async () => {
 	return await db.Events.findAll({
 		attributes: ['actor', [sequelize.fn('count', sequelize.col('actor'))]],
 		group: ['Events.actor'],
@@ -10,7 +10,7 @@ exports.getAllActorss = () => {
 	});
 };
 
-exports.getActor = (actorID) => {
+exports.getActor = async (actorID) => {
 	return await db.Events.findAll({
 		where: { actor: { id: actorID } },
 		attributes: ['actor', [sequelize.fn('count', sequelize.col('actor'))]],
@@ -19,7 +19,7 @@ exports.getActor = (actorID) => {
 	});
 };
 
-exports.updateActorr = (actorID, url) => {
+exports.updateActorr = async (actorID, url) => {
 	return await db.Events.update(
 		{
 			actor: {
@@ -36,7 +36,7 @@ exports.updateActorr = (actorID, url) => {
 	);
 };
 
-exports.getStreakk = () => {
+exports.getStreakk = async () => {
 	// still not clarified
 	return await db.Events.findAll({
 		attributes: ['actor', [sequelize.fn('count', sequelize.col('actor'))]],

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Event.init({
-    id: DataTypes.INTEGER,
+    id: { type: DataTypes.INTEGER, primaryKey: true },
     type: DataTypes.STRING,
     actor: DataTypes.JSON,
     repo: DataTypes.JSON,
